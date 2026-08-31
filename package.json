@@ -1,0 +1,26 @@
+{
+  "name": "wps-agent-kit",
+  "version": "1.0.0",
+  "description": "AI Agent 接入 WPS 生态工具包：新版便签(ainote.kdocs.cn)读写、云文档读取、AirPage 文档操作",
+  "main": "scripts/note-write.js",
+  "bin": {
+    "wps-auth": "scripts/auth.js",
+    "wps-note-write": "scripts/note-write.js",
+    "wps-note-list": "scripts/note-list.js",
+    "wps-doc-read": "scripts/doc-read.js"
+  },
+  "scripts": {
+    "auth": "node scripts/auth.js",
+    "note:write": "node scripts/note-write.js",
+    "note:list": "node scripts/note-list.js",
+    "doc:read": "node scripts/doc-read.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "keywords": ["wps", "kdocs", "ainote", "note", "airpage", "agent", "skill"],
+  "license": "MIT"
+}
