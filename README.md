@@ -4,9 +4,9 @@
 
 ---
 
-## 一、这玩意儿解决了什么问题？
+## 一、解决什么问题
 
-**痛点**：WPS 新版便签（ainote.kdocs.cn）没有公开的写入 API。你想让 AI（Claude Code、Cursor、Codex、豆包等）帮你自动记点东西到便签里，AI 做不到——只能你自己打开浏览器、新建笔记、打字、保存。
+**痛点**：WPS 新版便签（ainote.kdocs.cn）没有公开的写入 API。你想让 AI（Claude Code、Cursor、Codex、豆包等）帮你自动记录内容到便签里，AI 做不到——只能你自己打开浏览器、新建笔记、打字、保存。
 
 **解决方案**：这个工具在你电脑上跑一个无头浏览器（你看不到窗口），AI 只要执行一条命令，就能自动：
 1. 打开 WPS 笔记网页版
@@ -24,7 +24,7 @@
 
 ---
 
-## 二、装好后怎么用？
+## 二、使用方法
 
 ### 最简单：让 AI 帮你写
 
@@ -57,7 +57,7 @@ node scripts/note-edit.js --url "https://www.kdocs.cn/l/xxxxxxxx" --content "修
 
 ---
 
-## 三、别的电脑 / 别的 AI 怎么配置？
+## 三、多设备 / 多 AI 配置
 
 ### 3 步装好（任何电脑都一样）
 
@@ -76,7 +76,7 @@ cd wps-agent-kit
 npm install
 ```
 
-> 前提：电脑上装了 Node.js（去 https://nodejs.org 下载 LTS 版，一路下一步）。
+> 前提：电脑上装了 Node.js（去 https://nodejs.org 下载 LTS 版，按默认设置完成安装）。
 > 第一次会下载 Playwright 浏览器组件，约 100MB，等它装完。
 
 **第 3 步：登录 WPS（每台电脑都要做一次）**
@@ -129,20 +129,20 @@ A: 一般几周。过期了重新跑 `auth.js` 就行，1 分钟的事。
 **Q: macOS / Linux 上报错找不到 Edge 浏览器？**
 A: 用文本编辑器打开 `scripts/note-write.js`，把 `channel: 'msedge'` 改成 `channel: 'chrome'`（需要装了 Chrome），或者直接删掉这一行用默认浏览器。`auth.js` 也一样改。
 
-**Q: 这个跟 WPS 笔记官方 MCP 有啥区别？**
-A: 官方 MCP 功能更强（支持图片、标签、批量编辑），但必须装 WPS 笔记桌面客户端并保持运行。这个工具不用装桌面端，轻量，只做"写纯文本便签"这一件事，够大多数人用了。
+**Q: 这个跟 WPS 笔记官方 MCP 有什么区别？**
+A: 官方 MCP 功能更强（支持图片、标签、批量编辑），但必须装 WPS 笔记桌面客户端并保持运行。这个工具不用装桌面端，轻量，只做"写纯文本便签"这一件事，适合大多数场景。
 
 **Q: 安全吗？WPS 账号会不会泄露？**
 A: 登录态只存在你本地电脑的浏览器 profile 里，不会上传到任何地方。代码全开源，可以自己审查。没有任何遥测或数据收集。
 
 ---
 
-## 五、项目里有什么
+## 五、项目结构
 
 ```
 wps-agent-kit/
-├── 快速上手.md          ← 大白话教程（推荐先看这个）
-├── README.md            ← 你正在看的这个
+├── 快速上手.md          ← 快速上手指南（推荐先看这个）
+├── README.md            ← 项目说明（本文档）
 ├── SKILL.md             ← AI 自动识别用的说明（Claude Code / 豆包等）
 ├── package.json         ← 项目配置
 ├── scripts/
@@ -157,7 +157,7 @@ wps-agent-kit/
 
 ---
 
-## 一句话总结
+## 总结
 
 **clone 下来 → npm install → node scripts/auth.js 登录 → 以后让 AI 跑 node scripts/note-write.js --content "内容" 就行。**
 
