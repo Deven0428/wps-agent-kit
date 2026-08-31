@@ -43,8 +43,14 @@ node scripts/note-write.js --content "今天下午3点开会"
 # 带标题
 node scripts/note-write.js --title "会议提醒" --content "今天下午3点开会，记得带笔记本"
 
+# 文字 + 图片一起写（支持多张）
+node scripts/note-write.js --content "这个界面截图" --image "C:\截图1.png" --image "C:\截图2.jpg"
+
 # 查看最近的便签
 node scripts/note-list.js
+
+# 编辑/覆盖一条已有便签（用它的 URL）
+node scripts/note-edit.js --url "https://www.kdocs.cn/l/xxxxxxxx" --content "修改后的新内容"
 ```
 
 写好的内容在 https://ainote.kdocs.cn 或手机 WPS 笔记 App 里都能看到。
@@ -101,13 +107,14 @@ node scripts/auth.js
 
 ### 能用的
 - ✅ 写纯文本便签（中文、英文、代码片段都行）
+- ✅ **文字 + 图片一起写**（png / jpg / jpeg / gif / webp 等，支持多张）
+- ✅ **编辑 / 覆盖已有便签**（传入笔记 URL 即可）
 - ✅ 查看最近的便签列表
 - ✅ Windows / macOS / Linux 都能用
 - ✅ 写好的便签手机端也能看到（云端同步）
 
 ### 不能用的
-- ❌ **不支持图片、富文本（加粗、列表、颜色）**——只能写纯文本
-- ❌ **不能编辑已有便签**——每次都是新建一条
+- ❌ **不支持富文本格式（加粗、列表、颜色、表格）**——文字是纯文本，图片是整张插入
 - ❌ **不能删除便签**
 - ❌ **手机端 AI 用不了**——脚本跑在电脑上，手机 App 调不到
 
@@ -140,7 +147,8 @@ wps-agent-kit/
 ├── package.json         ← 项目配置
 ├── scripts/
 │   ├── auth.js          ← 登录 WPS（只需跑一次）
-│   ├── note-write.js    ← 写便签（最常用）
+│   ├── note-write.js    ← 写便签，支持文字+图片（最常用）
+│   ├── note-edit.js     ← 编辑/覆盖已有便签
 │   ├── note-list.js     ← 查看便签列表
 │   └── doc-read.js      ← 读 WPS 云文档（需要额外配 API Key，可选）
 └── references/
