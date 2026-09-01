@@ -45,6 +45,10 @@ if (!content) {
   process.exit(1);
 }
 
+// ── 浏览器通道（跨平台）──────────────────────────────────
+// Windows 默认 Edge；Linux/macOS 默认 Chromium；可用环境变量 WPS_BROWSER_CHANNEL 覆盖
+const _browserChannel = process.env.WPS_BROWSER_CHANNEL || (process.platform === 'win32' ? 'msedge' : null);
+
 const PROFILE_DIR = process.env.WPS_PROFILE_DIR ||
   path.join(os.homedir(), '.wps-agent-kit', 'profile');
 
@@ -61,7 +65,7 @@ if (!fs.existsSync(PROFILE_DIR)) {
 
   const context = await chromium.launchPersistentContext(PROFILE_DIR, {
     headless,
-    channel: 'msedge',
+    ...( _browserChannel ? { channel: _browserChannel } : {}),
     args: ['--no-sandbox'],
   });
   const page = await context.newPage();
